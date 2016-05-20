@@ -17,5 +17,5 @@ setup(name='telestatsd',
       download_url=('https://github.com/operasoftware/telestatsd/tarball/' +
                     __version__),
       packages=['telestatsd'],
-      install_requires=[],
+      install_requires=['srvlookup==0.2.0'],
       zip_safe=False)

@@ -1,5 +1,5 @@
 # telestatsd
-StatsD client in Python with support for Telegraf and SRV records in DNS
+StatsD client in Python with support for Telegraf and SRV records in DNS.
 
 ## Features
 * [SRV records](https://en.wikipedia.org/wiki/SRV_record) in DNS
