@@ -1,3 +1,3 @@
--#!/usr/bin/python                                                                                                                                                                                                 
--                                                                                                                                                                                                                  
--__version__ = '0.0.3'
+#!/usr/bin/python
+
+__version__ = '0.0.3'
