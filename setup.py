@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from setuptools import setup
+from setuptools import find_packages, setup
 
 from telestatsd import __version__
 
@@ -16,6 +16,6 @@ setup(name='telestatsd',
       keywords='statsd telegraf srv service record',
       download_url=('https://github.com/operasoftware/telestatsd/tarball/' +
                     __version__),
-      packages=['telestatsd'],
+      packages=find_packages(),
       install_requires=['srvlookup==0.2.0'],
       zip_safe=False)
