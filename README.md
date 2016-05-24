@@ -36,6 +36,7 @@ address_provider = Provider(service='telegraf-in-docker',
 
 lient = Client(tags={'foo': 1}, address_provider=address_provider)
 client.incr('success', 1)
+```
 
 ### Logger client
 
