@@ -36,4 +36,17 @@ address_provider = Provider(service='telegraf-in-docker',
 
 lient = Client(tags={'foo': 1}, address_provider=address_provider)
 client.incr('success', 1)
+
+### Logger client
+
+```python
+import logging
+import sys
+
+from telestatsd.clients.logger import Client
+
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+client = Client(tags={'foo': 1})
+client.incr('success')
+> INFO:telestatsd.clients.logger:success,foo=1:1|c
 ```
