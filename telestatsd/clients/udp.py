@@ -18,7 +18,7 @@ class Client(object):
         :type: dict
         """
         self._address_provider = address_provider
-        self._tags = tags
+        self._tags = {} if tags is None else tags
 
     def send(self, payload):
         """
