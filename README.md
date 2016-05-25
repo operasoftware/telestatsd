@@ -22,9 +22,9 @@ client = Client(tags={'foo': 1}, address_provider=address_provider)
 client.incr('success', 1)
 ```
 
-Since inet.Provider has default host (localhost) and port (8125) its initialization can be shortened:
+`inet.Provider` has default host (localhost) and port (8125) so its initialization can be shortened:
 
-```
+```python
 client = Client(tags={'foo': 1}, address_provider=Provider())
 ```
 
