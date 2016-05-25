@@ -22,6 +22,12 @@ client = Client(tags={'foo': 1}, address_provider=address_provider)
 client.incr('success', 1)
 ```
 
+Since inet.Provider has default host (localhost) and port (8125) its initialization can be shortened:
+
+```
+client = Client(tags={'foo': 1}, address_provider=Provider())
+```
+
 ### SRVINET address provider
 
 SRVINET provider returns (host, port) tuple for [AF_INET](https://docs.python.org/2/library/socket.html#socket.AF_INET) address family where host and port are retrieved from first [SRV](https://en.wikipedia.org/wiki/SRV_record) record returned by DNS server.

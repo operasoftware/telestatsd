@@ -3,7 +3,7 @@ class Provider(object):
     socket.AF_INET addresses provider.
     """
 
-    def __init__(self, host, port):
+    def __init__(self, host='localhost', port=8125):
         """
         :param host:
         :type: str
