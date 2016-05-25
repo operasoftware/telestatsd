@@ -9,6 +9,15 @@ StatsD client in Python with support for Telegraf and SRV records in DNS.
 
 ## Examples
 
+### UDP client with default address provider pointing to localhost:8215
+
+```python
+from telestatsd.clients.udp import Client
+
+client = Client(tags={'foo': 1})
+client.incr('success', 1)
+```
+
 ### INET (static) address provider
 
 INET provider returns (host, port) tuple for [AF_INET](https://docs.python.org/2/library/socket.html#socket.AF_INET) address family where host and port are passed while creating provider object.

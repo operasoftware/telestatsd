@@ -1,6 +1,8 @@
 import logging
 import socket
 
+from telestatsd.address_providers.inet import Provider as INETProvider
+
 
 logger = logging.getLogger(__name__)
 
@@ -10,13 +12,16 @@ class Client(object):
     StatsD UDP client supporting tags (Telegraf's extension)
     """
 
-    def __init__(self, address_provider, tags=None):
+    def __init__(self, address_provider=None, tags=None):
         """
         :param address_provider: socket.AF_INET addresses provider
         :type: object
         :param tags: tags to add to each metric
         :type: dict
         """
+        if address_provider is None:
+            address_provider = INETProvider()
+
         self._address_provider = address_provider
         self._tags = {} if tags is None else tags
 
