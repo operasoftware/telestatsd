@@ -1,10 +1,28 @@
+from functools import wraps
 import logging
+import random
 import socket
 
 from telestatsd.address_providers.inet import Provider as INETProvider
 
 
 logger = logging.getLogger(__name__)
+
+
+def sampled(method):
+    @wraps(method)
+    def inner(*args, **kwargs):
+        rate = kwargs.pop('rate', None)
+
+        if rate is not None and rate < 1:
+            if random.random() > rate:
+                return
+
+            kwargs['rate_suffix'] = '|@{0}'.format(rate)
+
+        return method(*args, **kwargs)
+
+    return inner
 
 
 class Client(object):
@@ -40,7 +58,8 @@ class Client(object):
 
         soc.sendto(payload, address)
 
-    def incr(self, name, delta=1, tags=None):
+    @sampled
+    def incr(self, name, delta=1, tags=None, rate_suffix=''):
         """
         :param name:
         :type: str
@@ -48,9 +67,11 @@ class Client(object):
         :type: int
         :param tags:
         :type: dict
+        :param rate_suffix:
+        :type str
         """
         name = self._append_tags_to_name(name, tags)
-        payload = '{0}:{1}|c'.format(name, delta)
+        payload = '{0}:{1}|c{2}'.format(name, delta, rate_suffix)
         self.send(payload)
 
     def _append_tags_to_name(self, name, tags):
